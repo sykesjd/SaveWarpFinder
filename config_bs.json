@@ -12,6 +12,6 @@
         [ "ba_xen4", "xen3_xen4", "ba_xen3" ]
     ],
     "voidMaps": [],
-    "warpStartMap": "ba_tram3",
+    "warpStartMap": "ba_security2",
     "isSourceOE": false
 }
