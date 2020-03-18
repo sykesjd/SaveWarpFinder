@@ -1,0 +1,17 @@
+{
+    "graphFile": "landmark_bs.txt",
+    "waypointsFile": "waypoints_bs.txt",
+    "bannedTransitions": [
+        [ "ba_tram2", "tram1_tram2", "ba_tram1" ],
+        [ "ba_tram3", "tram2_tram3", "ba_tram2" ],
+        [ "ba_security1", "tram3_security1", "ba_tram3" ],
+        [ "ba_security2", "sec1_sec2", "ba_security1" ],
+        [ "ba_canal1", "elevator_canal1", "ba_elevator" ],
+        [ "ba_teleport1", "xen1_teleport", "ba_xen1" ],
+        [ "ba_xen1", "teleport1_xen1", "ba_teleport1" ],
+        [ "ba_xen4", "xen3_xen4", "ba_xen3" ]
+    ],
+    "voidMaps": [],
+    "warpStartMap": "ba_tram3",
+    "isSourceOE": false
+}

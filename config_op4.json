@@ -1,0 +1,16 @@
+{
+    "graphFile": "landmark_op4.txt",
+    "waypointsFile": "waypoints_op4.txt",
+    "bannedTransitions": [
+        [ "of1a1", "of1a1", "of0a0" ],
+        [ "of1a5", "a4b5", "of1a4b" ],
+        [ "of1a5b", "of1a5to5b", "of1a5" ],
+        [ "of3a2", "of3a2", "of3a1" ],
+        [ "of3a4", "of3a4", "of3a2" ],
+        [ "of3a6", "of3a5of3a6", "of3a5" ],
+        [ "of4a2", "of4a1_to_of4a2_transition", "of4a1" ]
+    ],
+    "voidMaps": [],
+    "warpStartMap": "of0a0",
+    "isSourceOE": false
+}
