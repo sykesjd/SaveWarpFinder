@@ -424,7 +424,7 @@ def PathFinder(q, startMapIndex, dstMapIndex):
                     sys.stdout.flush()
 
 
-        if routeLen == MAX_PATH_LENGTH:
+        if int(routeLen) == int(MAX_PATH_LENGTH):
             q.task_done()
             continue
         if not isVoidMapCrossed:
