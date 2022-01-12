@@ -1,0 +1,14 @@
+{
+    "graphFile": "landmark_gmc.txt",
+    "waypointsFile": "waypoints_gmc.txt",
+    "bannedTransitions": [
+        [ "mayan0a", "tomayan", "city3b" ],
+        [ "rust4a", "to4a", "rust3a" ],
+        [ "rust4c", "rust4bc", "rust4b" ],
+        [ "rust6c", "to6c", "rust6b" ],
+        [ "rust7c", "7bto7c", "rust7b" ]
+    ],
+    "voidMaps": [],
+    "warpStartMap": "city2a",
+    "isSourceOE": false
+}
