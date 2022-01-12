@@ -6,7 +6,7 @@ A Python script for finding warp sequences in GoldSrc and Old Source Engine game
 `python builder.py -g <gameAbbr> -d "<destinationStr>" [-m <maxPathLength>]`
 
 - `gameAbbr`: the abbreviation for the game in which to find warps
-  - Available options: `hl1`, `op4`, `bs`, `hl2`
+  - Available options: `hl1`, `op4`, `bs`, `hl2`, `gmc`
 - `destinationStr`: desired destination for which to find warps, formatted as `<map> at: <x> x, <y> y, <z> z` where `map` is the map name and the xyz coordinates are provided
 - `maxPathLength` (optional): desired maximum chain length of warps to find (default is 35)
 
