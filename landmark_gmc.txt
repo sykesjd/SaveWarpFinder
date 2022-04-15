@@ -107,7 +107,7 @@
 "rebar2b","toreb3e","rebar3e","32 -304 -224"
 "rebar2c","toreb2c","rebar3e","580 152 -256"
 "rebar2c","toreb2g","rebar2g","1732 624 -288"
-"rebar2d","toreb2e","rebar2e","-888 -120 -284",
+"rebar2d","toreb2e","rebar2e","-888 -120 -284"
 "rebar2d","toreb2d","rebar2j","436 1976 96"
 "rebar2d","toreb2e","rebar2k","-888 -120 -284"
 "rebar2e","toreb2e","rebar2d","1040 -2448 560"

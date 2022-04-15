@@ -124,6 +124,11 @@ def ReadGraph():
             lines = fp.read().split('\n')
             for line in lines:
                 data = line.split(',')
+                # some text editors insist on including an empty line at the end of a file;
+                # this quirk screws over the following array manipulation logic, hence the guard
+                if len(data) != 4:
+                    #print('Invalid line: ' + line)
+                    continue;
                 data = [e[1:-1] for e in data]
                 if IS_SOURCEOE:
                     if data[0] == data[2]:
