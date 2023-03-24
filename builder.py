@@ -380,6 +380,10 @@ def calcRouteLen(route):
 def reverseRoute(route):
     return route[::-1]
 
+def containsBacktrack(route):
+    simplifiedRoute = simplifyRoute(route)
+    return simplifiedRoute.__contains__("lk") or simplifiedRoute.__contains__("kl")
+
 processedSaved = set()
 stdout_lock = threading.Lock()
 
@@ -404,7 +408,7 @@ def PathFinder(q, startMapIndex, dstMapIndex):
                     print('Search for path not longer than ' + str(int(lastRouteLen / THREAD_COUNT)) + ' steps complete!')
                     sys.stdout.flush()
 
-        if currentMapIndex < startMapIndex or currentMapIndex > dstMapIndex:
+        if currentMapIndex < startMapIndex or currentMapIndex > dstMapIndex or containsBacktrack(route):
             q.task_done()
             continue
 
@@ -420,7 +424,7 @@ def PathFinder(q, startMapIndex, dstMapIndex):
                     if IS_SOURCEOE:
                         print("   map " + save_map + ";setpos " + vec_str(vec_sub(currentCoordinates_save_map, shift_vec)))
                     else:
-                        print("   map " + save_map + ";w 70;noclip;bxt_ch_set_pos " + vec_str(vec_sub(currentCoordinates_save_map, shift_vec)))
+                        print("   map " + save_map + ";w 70;noclip;god;notarget;bxt_ch_set_pos " + vec_str(vec_sub(currentCoordinates_save_map, shift_vec)))
                     if shift_vec != [0, 0, 0]:
                         print("   bxt_ch_set_pos_offset " + vec_str(shift_vec))
                     print("   // " + simplifyRoute(reverseRoute(route)))
