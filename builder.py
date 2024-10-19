@@ -204,22 +204,25 @@ def BuildWays():
     Maps_d = [[INT_MAX for i in range(len(Maps))] for j in range(len(Maps))]
     Maps_p = [[-1 for i in range(len(Maps))] for j in range(len(Maps))]
     for i in range(len(Maps)):
-        for j in range(len(Maps)):
-            lm = GetAnyStrongConnection(Maps[i], Maps[j])
-            if lm and i != j:
-                Maps_d[i][j] = 1;
+        for j in range(i + 1, len(Maps)):
+            if GetAnyStrongConnection(Maps[i], Maps[j]):
+                Maps_d[i][j] = 1
                 Maps_d[j][i] = 1
                 Maps_p[i][j] = j
                 Maps_p[j][i] = i
 
     for i in range(len(Maps)):
         for u in range(len(Maps)):
+            if Maps_d[u][i] == INT_MAX:
+                continue
             for v in range(len(Maps)):
-                if u != v:
-                    if Maps_d[u][i] < INT_MAX and Maps_d[i][v] < INT_MAX:
-                        if Maps_d[u][i] + Maps_d[i][v] < Maps_d[u][v]:
-                            Maps_d[u][v] = Maps_d[u][i] + Maps_d[i][v]
-                            Maps_p[u][v] = Maps_p[u][i]
+                if u == v:
+                    continue
+                if Maps_d[i][v] == INT_MAX:
+                    continue
+                if Maps_d[u][i] + Maps_d[i][v] < Maps_d[u][v]:
+                    Maps_d[u][v] = Maps_d[u][i] + Maps_d[i][v]
+                    Maps_p[u][v] = Maps_p[u][i]
 
 
 def FixOrigin(map_from, map_to, coord):
@@ -413,32 +416,29 @@ def PathFinder(q, startMapIndex, dstMapIndex):
             continue
 
         dist, save_map, shift_z = HowCloseToWaypoint(currentCoordinates, isVoidMapCrossed)
-        if dist >= 0:
-            if save_map == Maps_order[currentMapIndex] and routeLen > 0:
-                currentCoordinates_save_map = FixOrigin(MAIN_COORD_MAP, save_map, currentCoordinates)
-                with stdout_lock:
-                    print("=" * 20)
-                    print("   Destination: " + DESTINATION)
-                    print("   " + str(int(dist)) + " - " + save_map)
-                    shift_vec = [0, 0, -shift_z]
-                    if IS_SOURCEOE:
-                        print("   map " + save_map + ";setpos " + vec_str(vec_sub(currentCoordinates_save_map, shift_vec)))
-                    else:
-                        print("   map " + save_map + ";w 70;noclip;god;notarget;bxt_ch_set_pos " + vec_str(vec_sub(currentCoordinates_save_map, shift_vec)))
-                    if shift_vec != [0, 0, 0]:
-                        print("   bxt_ch_set_pos_offset " + vec_str(shift_vec))
-                    print("   // " + simplifyRoute(reverseRoute(route)))
-                    print("   // " + ' '.join(reverseRoute(route)))
-                    print("=" * 20)
-                    sys.stdout.flush()
+        if dist >= 0 and save_map == Maps_order[currentMapIndex] and routeLen > 0:
+            currentCoordinates_save_map = FixOrigin(MAIN_COORD_MAP, save_map, currentCoordinates)
+            with stdout_lock:
+                print("=" * 20)
+                print("   Destination: " + DESTINATION)
+                print("   " + str(int(dist)) + " - " + save_map)
+                shift_vec = [0, 0, -shift_z]
+                if IS_SOURCEOE:
+                    print("   map " + save_map + ";setpos " + vec_str(vec_sub(currentCoordinates_save_map, shift_vec)))
+                else:
+                    print("   map " + save_map + ";w 70;noclip;god;notarget;bxt_ch_set_pos " + vec_str(vec_sub(currentCoordinates_save_map, shift_vec)))
+                if shift_vec != [0, 0, 0]:
+                    print("   bxt_ch_set_pos_offset " + vec_str(shift_vec))
+                print("   // " + simplifyRoute(reverseRoute(route)))
+                print("   // " + ' '.join(reverseRoute(route)))
+                print("=" * 20)
+                sys.stdout.flush()
 
 
         if int(routeLen) == int(MAX_PATH_LENGTH):
             q.task_done()
             continue
-        if not isVoidMapCrossed:
-            if Maps_order[currentMapIndex] in VOID_MAPS:
-                isVoidMapCrossed = True
+        isVoidMapCrossed = isVoidMapCrossed or Maps_order[currentMapIndex] in VOID_MAPS
 
         # sw
         if currentMapIndex > startMapIndex:

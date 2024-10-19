@@ -3,10 +3,22 @@
     "waypointsFile": "waypoints_gmc.txt",
     "bannedTransitions": [
         [ "mayan0a", "tomayan", "city3b" ],
+        [ "mayan0b", "tomayan0b", "mayan0a" ],
+        [ "cinematic1", "maya8tocinima1", "mayan8" ],
+        [ "cinematic2", "cinimatic1torust1", "cinematic1" ],
+        [ "rust1", "cinema2torust1", "cinematic2" ],
         [ "rust4a", "to4a", "rust3a" ],
+        [ "rust4b", "rust4ato4b", "rust4a" ],
         [ "rust4c", "rust4bc", "rust4b" ],
+        [ "rust5a", "r4c_r5a", "rust4c" ],
         [ "rust6c", "to6c", "rust6b" ],
-        [ "rust7c", "7bto7c", "rust7b" ]
+        [ "rust6d", "torust6d", "rust6c" ],
+        [ "rust7c", "7bto7c", "rust7b" ],
+        [ "cinematic3", "mommy", "rust9a" ],
+        [ "cinematic4", "cin3tocin4", "cinematic3" ],
+        [ "west1", "cin5towest1", "cinematic4" ],
+        [ "rebar0b", "toreb0", "rebar0a" ],
+        [ "rebar2a", "toreb1", "rebar0b" ]
     ],
     "voidMaps": [],
     "warpStartMap": "city2a",
